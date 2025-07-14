@@ -43,7 +43,7 @@ mainContainer.BackgroundTransparency = 1
 local uiScale = Instance.new("UIScale", mainContainer)
 uiScale.Scale = 1
 
--- Title text settings (no curve, just one TextLabel)
+-- Title text
 local titleContainer = Instance.new("Frame", mainContainer)
 titleContainer.Size = UDim2.new(1, 0, 0.07, 0)
 titleContainer.Position = UDim2.new(0, 0, 0.25, 0)
@@ -109,7 +109,7 @@ doneMsg.Position = UDim2.new(0, 0, 0.78, 0)
 doneMsg.Visible = false
 
 -- Progress Logic
-local duration = 300 -- 5 minutes
+local duration = 600 -- 10 minutes
 local steps = 100
 local waitTime = duration / steps
 
